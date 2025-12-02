@@ -5,7 +5,7 @@ import Wedding from "../../assets/weddingVideo.mp4";
 
 import { useState } from "react";
 import "../../style.css";
-const WeddingPackage = React.forwardRef(({animate, onAnimationEnd, onClose},ref) =>{
+const WeddingPackage = React.forwardRef(({animate, onAnimationEnd, onClose, login},ref) =>{
     const [type, setType] = useState("Basic");
 
     const clickedBasic = () =>{
@@ -30,7 +30,7 @@ const WeddingPackage = React.forwardRef(({animate, onAnimationEnd, onClose},ref)
                         <source src={Wedding} />
                     </video>
                     <h1 className="playfair  text-xl">Wedding Event Package</h1>
-                    <button className="bg-[#8FA584] w-full h-10 poppins-semibold cursor-pointer shadow-[2px_2px_2px_black] text-md rounded-2xl">Book Now</button>
+                    <button onClick={login} className="bg-[#8FA584] w-full h-10 poppins-semibold cursor-pointer shadow-[2px_2px_2px_black] text-md rounded-2xl">Book Now</button>
 
                 </div>
                 <div className="w-full min-h-60 py-3 poppins-regular text-sm lg:p-5">
