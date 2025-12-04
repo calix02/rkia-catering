@@ -1,6 +1,11 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 const LogIn = React.forwardRef(({animate, onAnimationEnd, onClose, signUp},ref) =>{
+    const [username , setUsername] = useState("user"); 
+   
+
     return(
         <div ref={ref} onAnimationEnd={onAnimationEnd} className={`${animate} px-5 relative w-100 h-120 overflow-hidden rounded-2xl bg-[#F6F3ED]`}>
             <div onClick={onClose}  className="flex justify-center -right-2 -top-2 absolute items-center w-12 h-12 cursor-pointer  transition duration-300   rounded-lg bg-[#8FA584]"><i className="fa-solid fa-x"></i></div>
@@ -20,8 +25,9 @@ const LogIn = React.forwardRef(({animate, onAnimationEnd, onClose, signUp},ref) 
                         <input className="w-full shadow-[2px_2px_2px_gray] mt-2 px-3 text-sm border h-10 rounded-xl border-[#e0e0e0] " placeholder="Password" type="password" />
                     </div>
                     <div className="">
-                        <Link to="/admin/dashboard">
-                        <button className="w-full poppins-semibold text-sm cursor-pointer bg-[#8FA584] h-10 rounded-xl shadow-[2px_2px_2px_gray]">Login</button>
+                        <Link to="/user/dashboard">
+                            <button  className="w-full poppins-semibold text-sm cursor-pointer bg-[#8FA584] h-10 rounded-xl shadow-[2px_2px_2px_gray]">Login</button>
+
                         </Link>
                     </div>
                 </form>
