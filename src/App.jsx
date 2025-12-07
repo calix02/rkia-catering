@@ -22,27 +22,45 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
+   
         <Route path='/admin/dashboard' element={
           <AdminRoute>
               <AdminDashboard/>
           </AdminRoute>
           }/>
-        <Route path='/admin/bookings' element={<Bookings/>}/>
-        <Route path='/admin/events' element={<Events/>}/>
-        <Route path='/admin/payments' element={<Payments/>}/>
-        <Route path='/admin/accounts' element={<Accounts/>}/>
-        <Route path='/admin/book-request' element={<BookRequest/>}/>
+        <Route path='/admin/bookings' element={
+          <AdminRoute>
+              <Bookings/>
+          </AdminRoute>
+        }/>
+        <Route path='/admin/events' element={
+          <AdminRoute>
+              <Events/>
+          </AdminRoute>
+        }/>
+        <Route path='/admin/payments' element={
+          <AdminRoute>
+              <Payments/>
+          </AdminRoute>
+        }/>
+        <Route path='/admin/accounts' element={
+          <AdminRoute>
+              <Accounts/>
+          </AdminRoute>
+        }/>
+        <Route path='/admin/book-request' element={
+          <AdminRoute>
+              <BookRequest/>
+          </AdminRoute>
+        }/>
 
-
-        <Route path='/user/dashboard' element={
+        <Route path='/customer/dashboard' element={
             <CustomerRoute>
               <UserDashboard/>
             </CustomerRoute>
           }/>
 
         <Route path='/403' element={<Unauthorized/>}/>
-
-
 
       </Routes>
     </Router>

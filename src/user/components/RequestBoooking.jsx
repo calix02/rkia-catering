@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState , useContext} from "react";
+import { AuthContext } from "../../AuthContext";
 import React from "react";
+
 const RequestBooking = React.forwardRef(({animate, onAnimationEnd, onClose},ref) =>{
+    const { user } = useContext(AuthContext);
 
     const [packageID, setPackageID] = useState("");
     const [userID, setUserID] = useState(null);
@@ -60,7 +63,7 @@ const RequestBooking = React.forwardRef(({animate, onAnimationEnd, onClose},ref)
                 <form  onSubmit={handleRequest} className="poppins-regular mt-5 text-sm flex flex-col gap-5">
                     <div>
                         <label className="text-md poppins-semibold" htmlFor="">UserId</label><br />
-                        <input className="w-full mt-2 shadow-[2px_2px_2px_gray]  px-3 text-sm border h-10 rounded-xl border-[#e0e0e0]" onChange={(e) => setUserID(e.target.value)} value={userID}  placeholder="User Id" type="number" />
+                        <input className="w-full mt-2 shadow-[2px_2px_2px_gray]  px-3 text-sm border h-10 rounded-xl border-[#e0e0e0]" onChange={(e) => setUserID(e.target.value)} value={user.user_id}  placeholder="User Id" type="number" />
                     </div>
                       <div>
                         <label className="text-md poppins-semibold" htmlFor="">PackageId</label><br />

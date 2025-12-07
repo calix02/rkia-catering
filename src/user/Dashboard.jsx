@@ -1,10 +1,13 @@
 import Sidebar from "./components/Sidebar";
 import useAnimatedToggle from "../hooks/useAnimatedToggle";
 import RequestBooking from "./components/RequestBoooking";
-import { useRef } from "react";
+import { useRef , useContext} from "react";
+import { AuthContext } from "../AuthContext";
+
 function Dashboard(){
     const book = useAnimatedToggle();
     const bookRef = useRef();
+    const { user } = useContext(AuthContext);
     return(
         <>
         {book.isVisible &&(
@@ -16,8 +19,9 @@ function Dashboard(){
         }
         <Sidebar/>
         <div className=" min-h-screen pb-5 w-full">
-            <div className="ml-60 flex justify-end px-10">
-                <button onClick={book.toggle} className="w-30  h-10 rounded-2xl mt-10 bg-sky-200 cursor-pointer">Book</button>
+            <div className="ml-60 flex justify-between  items-center pt-10 px-10">
+                <h1 className="poppins-semibold text-2xl">Welcome {user.full_name}</h1>
+                <button onClick={book.toggle} className="w-30  h-10 rounded-2xl  bg-sky-200 cursor-pointer">Book</button>
             </div>
         </div>
 
