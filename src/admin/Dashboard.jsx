@@ -1,13 +1,27 @@
 import Card from "./components/Card";
 import Sidebar from "./components/Sidebar";
 import UpcomingEventsModal from "./components/UpcomingEventsModal";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import useAnimatedToggle from "../hooks/useAnimatedToggle";
 import BookingLineChart from "./components/BookingLineChart";
 import ".././animate.css"
 function Dashboard(){
     const showUpcomigEvent = useAnimatedToggle();
     const upcomingEventRef = useRef(null);
+    const [data, setData] = useState([]);
+    
+        const fetchData = async () =>{
+            try{
+                const res = await fetch("http://localhost/backend/api/get_total_booking.php");
+                const json = await res.json();
+                setData(json);
+            }catch(err){
+                console.log(err);
+            }
+        }
+        useEffect(() =>{
+            fetchData();
+        },[])
     return(
         <>
         {showUpcomigEvent.isVisible && (
@@ -27,7 +41,7 @@ function Dashboard(){
             <div className="lg:ml-60  px-8">
                 <h1 className="poppins-bold text-2xl">Dashboard</h1>
                 <div className="flex lg:flex-row mt-10 flex-col gap-5">
-                    <Card title="Total Bookings" total="11"/>
+                    <Card title="Total Bookings" total={data.total}/>
                     <Card title="Total Request" total="18"/>
                     <Card title="Total Accounts" total="107"/>
                     <Card onClick={showUpcomigEvent.toggle} title="Upcoming Bookings" total="3"/>

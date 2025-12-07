@@ -1,8 +1,9 @@
 import React from "react";
 import Wedding from "../../assets/weddingVideo.mp4";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../style.css";
-const Weddings = React.forwardRef(({animate, onAnimationEnd, onClose, login},ref) =>{
+const Weddings = React.forwardRef(({animate, onAnimationEnd, onClose, login, id},ref) =>{
+
     const [type, setType] = useState("Basic");
 
     const clickedBasic = () =>{
@@ -14,6 +15,31 @@ const Weddings = React.forwardRef(({animate, onAnimationEnd, onClose, login},ref
      const clickedLuxe = () =>{
         setType("Luxe");
     }
+    const [eventId, setEventId] = useState(id);
+    const [data, setData] = useState([]);
+    
+    const fetchData = async () =>{
+        try{
+            const res = await fetch("http://localhost/backend/api/get_packages.php",{
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json",
+                },
+                body:JSON.stringify({
+                   eventId
+                })
+            });
+
+            const json = await res.json();
+            setData(json);
+            console.log(data)
+        }catch(err){
+            console.log(err);
+        }
+    }
+    useEffect(() =>{
+        fetchData();
+    },[])
 
     return(
         <div ref={ref} onAnimationEnd={onAnimationEnd} className={`lg:w-220 w-100 px-5 max-h-160 py-3 overflow-y-scroll hide-scrollbar relative ${animate} rounded-2xl bg-[#F6F3ED]`}>
@@ -22,12 +48,13 @@ const Weddings = React.forwardRef(({animate, onAnimationEnd, onClose, login},ref
                 <h1 className="poppins-regular text-xl mt-2">RKIA Catering</h1>
             </div>
             <div  className="w-full flex  lg:flex-row flex-col">
+                
                 <div className="w-full gap-2 min-h-60 py-3 px-3 cursor-pointer flex flex-col justify-center items-center ">
                     <video className="w-90 rounded-2xl lg:mt-10 shadow-[2px_2px_2px_gray]" playsInline autoPlay muted loop disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback" >
                         <source src={Wedding} />
                     </video>
-                    <h1 className="playfair  text-xl">Wedding Event Package</h1>
-                    <button onClick={login} className="bg-[#8FA584] w-full h-10 poppins-semibold cursor-pointer shadow-[2px_2px_2px_black] text-md rounded-2xl">Add Package</button>
+                    <h1 className="playfair  text-xl"> Package</h1>
+                    <button onClick={login} className="bg-[#8FA584] w-full h-10 poppins-semibold cursor-pointer shadow-[2px_2px_2px_black] text-md rounded-2xl">Add Package{id}</button>
 
                 </div>
                 <div className="w-full min-h-60 py-3 poppins-regular text-sm lg:p-5">

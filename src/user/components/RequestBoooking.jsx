@@ -50,7 +50,6 @@ const RequestBooking = React.forwardRef(({animate, onAnimationEnd, onClose},ref)
         }
     };
   
-
     return(
         <div ref={ref} onAnimationEnd={onAnimationEnd} className={`${animate} px-5 relative w-100 min-h-120 pb-5 overflow-hidden rounded-2xl bg-[#F6F3ED]`}>
             <div onClick={onClose}  className="flex justify-center -right-2 -top-2 absolute items-center w-12 h-12 cursor-pointer  transition duration-300   rounded-lg bg-[#8FA584]"><i className="fa-solid fa-x"></i></div>
