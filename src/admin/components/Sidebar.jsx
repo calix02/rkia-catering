@@ -20,7 +20,7 @@ function Sidebar(){
                     <span class="material-symbols-outlined">payments</span> <p>Payment</p>
                 </Link>
                  <Link to="/admin/accounts" className=" px-5 gap-2 flex items-center h-10 w-full rounded-lg hover:bg-[#8FA584] transition duration-300">
-                    <span class="material-symbols-outlined">person</span> <p>Accouts</p>
+                    <span class="material-symbols-outlined">person</span> <p>Accounts</p>
                 </Link>
             </nav>
 

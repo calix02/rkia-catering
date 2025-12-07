@@ -5,7 +5,8 @@ import Luxe from ".././assets/luxe.svg";
 import Wedding from ".././assets/wedding.png";
 import Birthday from ".././assets/birthday2.png";
 import Baptismal from ".././assets/baptismal1.png";
-import Family from ".././assets/fam.png";
+import FamilyPic from ".././assets/family.jpg";
+import SchoolPic from ".././assets/school.jpg";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Baptism from ".././assets/baptism.png";
@@ -13,6 +14,7 @@ import WeddingPackage from "./components/WeddingPackage";
 import BirthdayPackage from "./components/BirthdayPackage";
 import BaptismalPackage from "./components/BapstimalPackage";
 import FamilyPackage from "./components/FamilyPackage";
+import SchoolPackage from "./components/SchoolPackage";
 import useAnimatedToggle from "../hooks/useAnimatedToggle";
 import Typewriter from "./components/TypeWriter";
 import { useRef, useState } from "react";
@@ -37,17 +39,17 @@ function LandingPage(){
          event3 : [{
             picture: Baptismal,
             eventName : "Baptismal",
-            tagline: "“Honoring your child’s special moment with thoughtful decorations.”",
+            tagline: "“Honoring your child’s special moment with decorations.”",
 
         }],
          event4 : [{
-            picture: Family,
+            picture: FamilyPic,
             eventName : "Family Gathering",
             tagline: "“Beautiful setups that make every family moment feel extra special.”",
 
         }],
          event5 : [{
-            picture: Family,
+            picture: SchoolPic,
             eventName : "School Event",
             tagline: "“Beautiful setups that make every family moment feel extra special.”",
 
@@ -61,13 +63,12 @@ function LandingPage(){
     const showSignUp = useAnimatedToggle();
     const signUpRef = useRef(null);
 
-
     const showPackage = useAnimatedToggle();
     const weddingRef = useRef(null);
     const birthdayRef = useRef(null);
     const baptismalRef = useRef(null);
     const familyRef = useRef(null);
-
+    const schoolRef = useRef(null);
 
     return(
         <>
@@ -84,6 +85,9 @@ function LandingPage(){
                 )}
                 {selectedEvent === "Family Gathering" &&(
                     <FamilyPackage ref={familyRef} onAnimationEnd={showPackage.handleEnd} onClose={() => showPackage.setAnimation("fade-out")} animate={showPackage.animation}/>
+                )}
+                {selectedEvent === "School Event" &&(
+                    <SchoolPackage ref={schoolRef} onAnimationEnd={showPackage.handleEnd} onClose={() => showPackage.setAnimation("fade-out")} animate={showPackage.animation}/>
                 )}
             </div>
         )}
@@ -106,7 +110,7 @@ function LandingPage(){
             <div className="w-full h-screen flex flex-col lg:justify-center lg:py-0 py-20 lg:mt-0 mt-30  z-10 lg:px-15 px-5 ">
                 <p className="roboto lg:text-2xl text-lg lg:text-start text-center">Let’s bring your dream event to life .</p>
                 <h1 className="poppins-semibold text-center lg:text-start lg:text-6xl text-4xl lg:w-180 lg:mt-5  lg:leading-15 leading-13"><span className="text-[#6E856A]">Crafting</span> magical moments</h1>
-                <Typewriter message="From intimate gatherings to grand celebrations, we design decorations that truly impress.Let’s talk about your event today"/>
+                <Typewriter message="From intimate gatherings to grand celebrations, we design decorations that truly impress. Let’s talk about your event today!"/>
                 <div className="flex lg:justify-start justify-center px-5 gap-5 lg:mt-5 mt-10">
                     <button className="w-35 h-10 poppins-semibold bg-[#8FA584] cursor-pointer shadow-[2px_2px_1px_black] rounded-2xl  hover:scale-107 transition duration-300">Get Started</button>
                     <button onClick={showLogIn.toggle} className="w-35 h-10 bg-white text-[#51754a] poppins-semibold cursor-pointer rounded-2xl shadow-[2px_2px_2px_black] hover:scale-107 transition duration-300">Book Now</button>
@@ -150,9 +154,9 @@ function LandingPage(){
                     <h1 className="poppins-bold  text-2xl ">Get In Touch <span className="text-[#6E856A]">With Us</span></h1>
                     <div className="flex gap-8">
                         <a className="h-10 w-10 hover:scale-107 hover:shadow-[2px_2px_2px_black] transition duration-300 rounded-lg bg-[#A9B79A] flex  items-center justify-center shadow-[2px_2px_2px_gray] border border-[#e0e0e0]" href=""><i className="fa-brands fa-facebook"></i></a>
-                        <a className="h-10 w-10 rounded-lg bg-[#A9B79A] flex items-center justify-center  shadow-[2px_2px_2px_black]  border border-[#e0e0e0]" href=""><i className="fa-brands fa-instagram"></i></a>
-                        <a className=" h-10 w-10 rounded-lg bg-[#A9B79A] flex items-center justify-center shadow-[2px_2px_2px_black]  border border-[#e0e0e0]" href=""><i className="fa-regular fa-envelope"></i></a>
-                        <a className="h-10 w-10 rounded-lg flex items-center justify-center shadow-[2px_2px_2px_black] bg-[#A9B79A] border border-[#e0e0e0]" href=""><i className="fa-solid fa-phone"></i></a>
+                        <a className="h-10 w-10 hover:scale-107 hover:shadow-[2px_2px_2px_black] transition duration-300 rounded-lg bg-[#A9B79A] flex items-center justify-center  shadow-[2px_2px_2px_black]  border border-[#e0e0e0]" href=""><i className="fa-brands fa-instagram"></i></a>
+                        <a className=" h-10 w-10 hover:scale-107 hover:shadow-[2px_2px_2px_black] transition duration-300 rounded-lg bg-[#A9B79A] flex items-center justify-center shadow-[2px_2px_2px_black]  border border-[#e0e0e0]" href=""><i className="fa-regular fa-envelope"></i></a>
+                        <a className="h-10 w-10 hover:scale-107 hover:shadow-[2px_2px_2px_black] transition duration-300 rounded-lg flex items-center justify-center shadow-[2px_2px_2px_black] bg-[#A9B79A] border border-[#e0e0e0]" href=""><i className="fa-solid fa-phone"></i></a>
                     </div>
                    
                 </div>

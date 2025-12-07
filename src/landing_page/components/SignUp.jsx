@@ -54,7 +54,7 @@ const SignUp = React.forwardRef(({animate, onAnimationEnd, onClose, logIn},ref) 
             }
         }catch(err){
             console.error(err);
-            alert("Something went wrong. Check console.");
+            alert(err);
         }
     };
 

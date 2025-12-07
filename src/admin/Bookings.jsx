@@ -1,5 +1,21 @@
 import Sidebar from "./components/Sidebar";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 function Bookings(){
+    const [data, setData] = useState([]);
+    const fetchData = async () =>{
+        try{
+            const res = await fetch("http://localhost/backend/api/get_booking_approved.php");
+            const json = await res.json();
+            setData(json);
+        }catch(err){
+            console.log(err);
+        }
+    }
+    useEffect(() =>{
+        fetchData();
+    },[])
+
     return(
         <>
         <Sidebar/>
@@ -21,26 +37,33 @@ function Bookings(){
                                 <th>Location</th>
                                 <th>Package</th>
                                 <th className="py-6">Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Joel Malupiton</td>
-                                <td>Wedding Event</td>
-                                <td>Cavite</td>
-                                <td>Luxe</td>
-                                <td className="py-6">12/18/2015</td>
-                                
-                             </tr>
-                             <tr>
-                                <td>Joel Malupiton</td>
-                                <td>Wedding Event</td>
-                                <td>Cavite</td>
-                                <td>Luxe</td>
-                                <td className="py-6">12/18/2015</td>
-                               
+                            {data.length > 0 ? (
+                            data.map((b, id) =>(
+                            <tr key={id}>
+                                <td>{b.full_name}</td>
+                                <td>{b.event_name}</td>
+                                <td>{b.event_location}</td>
+                                <td>{b.package_name}</td>
+                                <td className="py-6">{b.event_date}</td>
+                                <td>
+                                    <div className="flex gap-2 text-md justify-center cursor-pointer items-center text-green-600 ">
+                                        <p>Done</p>
+                                        <i className="fa-solid fa-calendar-check"></i>
+                                    </div>
+                                </td>
                              </tr>
 
+                            ))
+                            ):(
+                            <tr colspan="6" className="text-xl poppins-semibold text-gray-400 py-10">
+                                <td>No Approved Bookings</td>
+                            </tr>
+                            )}
+                           
                         </tbody>
                     </table>
                 </div>
