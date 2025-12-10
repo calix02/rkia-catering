@@ -1,10 +1,13 @@
 import LandingPage from './landing_page/LandingPage'
 import Unauthorized from './Unauthorized';
+ 
 import AdminDashboard from './admin/Dashboard';
 import Bookings from './admin/Bookings';
 import Events from './admin/Events';
 import Payments from './admin/Payments';
 import Accounts from './admin/Accounts';
+import BookingHistory from './admin/BookingHistory';
+
 import BookRequest from './admin/BookRequest';
 import AdminRoute from './AdminRoute';
 import CustomerRoute from './CustomerRoute';
@@ -41,6 +44,11 @@ function App() {
         <Route path='/admin/payments' element={
           <AdminRoute>
               <Payments/>
+          </AdminRoute>
+        }/>
+         <Route path='/admin/booking-history' element={
+          <AdminRoute>
+              <BookingHistory/>
           </AdminRoute>
         }/>
         <Route path='/admin/accounts' element={

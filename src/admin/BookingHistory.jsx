@@ -1,11 +1,12 @@
 import Sidebar from "./components/Sidebar";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-function Bookings(){
+function BookingHistory(){
+
     const [data, setData] = useState([]);
     const fetchData = async () =>{
         try{
-            const res = await fetch("http://localhost/backend/api/get_booking_approved.php");
+            const res = await fetch("http://localhost/backend/api/get_booking_history.php");
             const json = await res.json();
             setData(json);
         }catch(err){
@@ -15,16 +16,16 @@ function Bookings(){
     useEffect(() =>{
         fetchData();
     },[])
-
-    const handleComplete = async (bookingId) => {
+    
+    const handleDelete = async (bookingId) => {
             const confirm = await Swal.fire({
-                title: "Booking Complete?",
+                title: "Delete History?",
                 text: "Are you sure?",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#8FA584",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Complete Booking",
+                confirmButtonText: "Delete History",
             });
     
             if (!confirm.isConfirmed) return;
@@ -34,7 +35,7 @@ function Bookings(){
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
                     booking_id: bookingId, 
-                    action: "complete" 
+                    action: "delete" 
                 })
             });
     
@@ -57,7 +58,7 @@ function Bookings(){
                 </div>
             </div>
             <div className="ml-60  px-8">
-                <h1 className="poppins-bold text-2xl">Bookings</h1>
+                <h1 className="poppins-bold text-2xl">Booking History</h1>
                 <div className="mt-10 border border-[#e0e0e0] overflow-hidden rounded-2xl shadow-[2px_2px_2px_gray]">
                     <table className=" poppins-regular w-full  text-center">
                         <thead className="bg-[#8FA584] ">
@@ -66,7 +67,9 @@ function Bookings(){
                                 <th>Event Name</th>
                                 <th>Location</th>
                                 <th>Package</th>
-                                <th className="py-6">Date</th>
+                                <th >Date</th>
+                                <th className="py-6">Status</th>
+
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -78,11 +81,11 @@ function Bookings(){
                                 <td>{b.event_name}</td>
                                 <td>{b.event_location}</td>
                                 <td>{b.package_name}</td>
-                                <td className="py-6">{b.event_date}</td>
+                                <td >{b.event_date}</td>
+                                <td  className="py-6">{b.booking_status}</td>
                                 <td>
-                                    <div onClick={()=>handleComplete(b.booking_id)} className="flex gap-2 text-md justify-center cursor-pointer items-center text-green-600 ">
-                                        <p>Done</p>
-                                        <i className="fa-solid fa-calendar-check"></i>
+                                    <div onClick={()=>handleDelete(b.booking_id)} className="flex gap-2 text-md justify-center cursor-pointer items-center text-red-600 ">
+                                        <i className="fa-solid fa-trash"></i>
                                     </div>
                                 </td>
                              </tr>
@@ -90,7 +93,7 @@ function Bookings(){
                             ))
                             ):(
                             <tr colspan="6" className="text-xl poppins-semibold text-gray-400 py-10">
-                                <td>No Approved Bookings</td>
+                                <td>No History</td>
                             </tr>
                             )}
                            
@@ -103,4 +106,4 @@ function Bookings(){
        
     );
 }
-export default Bookings;
+export default BookingHistory;

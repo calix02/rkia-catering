@@ -16,12 +16,16 @@ function Sidebar(){
                 <Link to="/admin/events" className=" px-5 gap-2 flex items-center h-10 w-full rounded-lg hover:bg-[#8FA584] transition duration-300">
                     <span class="material-symbols-outlined">celebration</span> <p>Events</p>
                 </Link>
+                 <Link to="/admin/booking-history" className=" px-5 gap-2 flex items-center h-10 w-full rounded-lg hover:bg-[#8FA584] transition duration-300">
+                    <span class="material-symbols-outlined">edit_calendar</span> <p>Booking History</p>
+                </Link>
                 <Link to="/admin/payments" className=" px-5 gap-2 flex items-center h-10 w-full rounded-lg hover:bg-[#8FA584] transition duration-300">
                     <span class="material-symbols-outlined">payments</span> <p>Payment</p>
                 </Link>
                  <Link to="/admin/accounts" className=" px-5 gap-2 flex items-center h-10 w-full rounded-lg hover:bg-[#8FA584] transition duration-300">
                     <span class="material-symbols-outlined">person</span> <p>Accounts</p>
                 </Link>
+                
                 <button to="/admin/accounts" className=" px-5 gap-2 flex items-center cursor-pointer h-10 w-full rounded-lg hover:bg-[#8FA584] transition duration-300">
                     <span class="material-symbols-outlined">logout</span> <p>Log Out</p>
                 </button>

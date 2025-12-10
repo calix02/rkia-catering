@@ -68,7 +68,6 @@ function Events(){
         </div>
       )}
 
-      
       <Sidebar />
       <div className="bg-[#f6f3ed] w-full min-h-screen py-5">
         <div className="w-full flex px-10 justify-end">
