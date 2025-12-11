@@ -1,7 +1,7 @@
 import Sidebar from "./components/Sidebar";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../AuthContext";
-function BookingStatus() {
+function BookingHistory() {
     
     const { user } = useContext(AuthContext);
     const [data, setData] = useState([]);
@@ -12,7 +12,7 @@ function BookingStatus() {
         
             const fetchData = async () => {
               try {
-                const res = await fetch("http://localhost/backend/api/get_booking_user.php", {
+                const res = await fetch("http://localhost/backend/api/get_history_user.php", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ userId: userId }),
@@ -75,4 +75,4 @@ function BookingStatus() {
         </>
     );
 }
-export default BookingStatus;
+export default BookingHistory;

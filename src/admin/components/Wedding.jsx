@@ -46,7 +46,6 @@ const Weddings = React.forwardRef(({animate, onAnimationEnd, onClose, login, id}
             <div onClick={onClose}  className="flex justify-center -right-2 -top-2 absolute items-center w-12 h-12 cursor-pointer  transition duration-300   rounded-lg bg-[#8FA584]"><i className="fa-solid fa-x"></i></div>
             <div className=" flex justify-start gap-2 px-10">
                 <h1 className="poppins-regular text-xl mt-2">RKIA Catering</h1>
-                <input   className="bg-red-300" type="text" />
             </div>
             <div  className="w-full flex  lg:flex-row flex-col">
                 
@@ -55,7 +54,7 @@ const Weddings = React.forwardRef(({animate, onAnimationEnd, onClose, login, id}
                         <source src={Wedding} />
                     </video>
                     <h1 className="playfair  text-xl">{data.event_name} Package</h1>
-                    <button onClick={login} className="bg-[#8FA584] w-full h-10 poppins-semibold cursor-pointer shadow-[2px_2px_2px_black] text-md rounded-2xl">Add Package {id}</button>
+                    <button onClick={login} className="bg-[#8FA584] w-full h-10 poppins-semibold cursor-pointer shadow-[2px_2px_2px_black] text-md rounded-2xl">Add Package </button>
 
                 </div>
                 <div className="w-full min-h-60 py-3 poppins-regular text-sm lg:p-5">

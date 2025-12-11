@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthContext";
 import LoadingScreen from "../../LoadingScreen";
+import Logo from "../../assets/logo.png";
 import Swal from "sweetalert2"; // <-- import SweetAlert2
 
 function Sidebar() {
@@ -37,8 +38,8 @@ function Sidebar() {
       {loading && <LoadingScreen />}
 
       <div className="w-60 lg:block hidden h-screen overflow-clip rounded-2xl bg-[#F2EDE5] shadow-[2px_2px_2px_gray] border-r-2 border-[#e0e0e0] fixed left-0">
-        <h1 className="playfair text-2xl text-center mt-10">
-          Logo <span className="text-lg poppins-regular">RKIA Catering</span>
+        <h1 className="playfair text-2xl flex items-center justify-center gap-2  text-center mt-10">
+          <span><img src={Logo} className="w-15" alt="" /></span> <span className="text-lg poppins-semibold">RKIA Catering</span>
         </h1>
 
         <nav className="text-md poppins-medium w-full flex flex-col gap-3 px-3 mt-10">

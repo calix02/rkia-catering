@@ -12,6 +12,8 @@ import AdminRoute from './AdminRoute';
 import CustomerRoute from './CustomerRoute';
 
 import UserDashboard from './user/Dashboard';
+import BookingStatus from './user/BookingStatus';
+import BookingHistoryUser from './user/BookingHistory';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
@@ -60,6 +62,16 @@ function App() {
         <Route path='/customer/dashboard' element={
             <CustomerRoute>
               <UserDashboard/>
+            </CustomerRoute>
+          }/>
+           <Route path='/customer/book-status' element={
+            <CustomerRoute>
+              <BookingStatus/>
+            </CustomerRoute>
+          }/>
+           <Route path='/customer/book-history' element={
+            <CustomerRoute>
+              <BookingHistoryUser/>
             </CustomerRoute>
           }/>
 

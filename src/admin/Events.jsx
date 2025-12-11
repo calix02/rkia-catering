@@ -79,13 +79,8 @@ function Events(){
 
         <div className="lg:ml-60 px-8">
           <h1 className="poppins-bold text-2xl">Events</h1>
-
-          <div className="flex justify-end">
-            <button
-              onClick={addEvent.toggle} className="h-10 w-40 bg-white cursor-pointer rounded-2xl shadow-[2px_2px_2px_black] poppins-semibold text-sm text-center">
-              Add Event
-            </button>
-          </div>
+      
+          
 
           <div className=" grid grid-cols-3 gap-7 ">
 

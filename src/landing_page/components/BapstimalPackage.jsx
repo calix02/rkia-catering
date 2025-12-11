@@ -30,7 +30,7 @@ const BaptismalPackage = React.forwardRef(({animate, onAnimationEnd, onClose},re
                         <source src={Wedding} />
                     </video>
                     <h1 className="playfair  text-xl">Baptismal Event Package</h1>
-                    <button className="bg-[#8FA584] w-full h-10 poppins-semibold cursor-pointer shadow-[2px_2px_2px_black] text-md rounded-2xl">Book Now</button>
+                    <div className="bg-[#8FA584] w-full h-10 poppins-semibold cursor-pointer shadow-[2px_2px_2px_black] text-md rounded-2xl">Book Now </div>
 
                 </div>
                 <div className="w-full min-h-60 py-3 poppins-regular text-sm lg:p-5">

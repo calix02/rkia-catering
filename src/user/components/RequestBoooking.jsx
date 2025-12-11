@@ -12,8 +12,6 @@ const RequestBooking = React.forwardRef(({animate, onAnimationEnd, onClose},ref)
     const [eventLocation, setEventLocation] = useState("");
     
  
-
-
     const handleRequest = async (e) => {
         e.preventDefault();
         try{

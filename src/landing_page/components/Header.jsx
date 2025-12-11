@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Logo from "../../assets/logo.png";
 import "../../animate.css";
 function Header({home,services,about}){
     const [showNavigation, setShowNavigation] = useState(false);
@@ -20,7 +21,7 @@ function Header({home,services,about}){
         <>
         <div className={`w-full flex items-center z-30 fixed top-0 justify-between lg:px-20 px-10 h-20 bg-[#F2EDE5] shadow-[2px_2px_2px_gray] ${showNavigation? "rounded-none" : "rounded-2xl" }`}>
             <div className=" flex h-20 items-center gap-2">
-                <div className="playfair text-3xl">Logo</div>
+                <img src={Logo} className="w-15" alt="" />
                 <h1 className="poppins-regular text-xl">RKIA Catering</h1>
             </div>
             <div className="">
