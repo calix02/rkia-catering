@@ -4,7 +4,6 @@ import Unauthorized from './Unauthorized';
 import AdminDashboard from './admin/Dashboard';
 import Bookings from './admin/Bookings';
 import Events from './admin/Events';
-import Payments from './admin/Payments';
 import Accounts from './admin/Accounts';
 import BookingHistory from './admin/BookingHistory';
 
@@ -25,7 +24,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
-   
+
         <Route path='/admin/dashboard' element={
           <AdminRoute>
               <AdminDashboard/>
@@ -41,11 +40,7 @@ function App() {
               <Events/>
           </AdminRoute>
         }/>
-        <Route path='/admin/payments' element={
-          <AdminRoute>
-              <Payments/>
-          </AdminRoute>
-        }/>
+       
          <Route path='/admin/booking-history' element={
           <AdminRoute>
               <BookingHistory/>

@@ -11,7 +11,7 @@ import {
   Filler,
 } from 'chart.js';
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend);
+ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend,Filler);
 
 const BookingLineChart = () => {
   const [selectedYear, setSelectedYear] = useState('2025');

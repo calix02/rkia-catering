@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import { Navigate } from "react-router-dom";
-const CustomerRoute = ({ children }) => {
-  const { user } = useContext(AuthContext);
 
-  if (!user) return <Navigate to="/" />;
+export default function CustomerRoute({ children }) {
+  const { user, checkingSession } = useContext(AuthContext);
 
-  return user.role === "user" 
-    ? children 
-    : <Navigate to="/403" />;
-};
-export default CustomerRoute;
+  if (checkingSession) return <div>Loading...</div>;
+
+  if (!user || user.role !== "customer") return <Navigate to="/403" />;
+
+  return children;
+}

@@ -6,7 +6,7 @@ const RequestBooking = React.forwardRef(({animate, onAnimationEnd, onClose},ref)
     const { user } = useContext(AuthContext);
 
     const [packageID, setPackageID] = useState("");
-    const [userID, setUserID] = useState(null);
+    const [userID, setUserID] = useState(user.user_id);
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [eventLocation, setEventLocation] = useState("");
@@ -25,7 +25,7 @@ const RequestBooking = React.forwardRef(({animate, onAnimationEnd, onClose},ref)
                 },
                 body:JSON.stringify({
                   packageID,
-                  userID,
+                  userID : userID,
                   date,
                   time,
                   eventLocation
@@ -60,11 +60,8 @@ const RequestBooking = React.forwardRef(({animate, onAnimationEnd, onClose},ref)
                 </div>
                 <h1 className="playfair text-2xl text-center mt-3">Book Event</h1>
                 <form  onSubmit={handleRequest} className="poppins-regular mt-5 text-sm flex flex-col gap-5">
+
                     <div>
-                        <label className="text-md poppins-semibold" htmlFor="">UserId</label><br />
-                        <input className="w-full mt-2 shadow-[2px_2px_2px_gray]  px-3 text-sm border h-10 rounded-xl border-[#e0e0e0]" onChange={(e) => setUserID(e.target.value)} value={user.user_id}  placeholder="User Id" type="number" />
-                    </div>
-                      <div>
                         <label className="text-md poppins-semibold" htmlFor="">PackageId</label><br />
                         <input className="w-full mt-2 shadow-[2px_2px_2px_gray]  px-3 text-sm border h-10 rounded-xl border-[#e0e0e0]" onChange={(e) => setPackageID(e.target.value)} value={packageID}  placeholder="Package Id" type="text" />
                     </div>

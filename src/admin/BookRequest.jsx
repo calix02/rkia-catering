@@ -33,11 +33,11 @@ function BookRequest() {
 
         if (!confirm.isConfirmed) return;
 
-        const res = await fetch("http://localhost/backend/api/cancel_booking_admin.php", {
+        const res = await fetch("http://localhost/backend/api/crud.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ 
-                booking_id: bookingId, 
+                id: bookingId, 
                 action: "cancel" 
             })
         });
@@ -50,58 +50,24 @@ function BookRequest() {
         }
     };
 
-
-   
-    const handleDelete = async (bookingId) => {
-        const confirm = await Swal.fire({
-            title: "Delete Booking?",
-            text: "This cannot be undone!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#999",
-            confirmButtonText: "Delete"
-        });
+    const handleApprove = async (bookingId) => {
+       const confirm = await Swal.fire({
+           title: "Approve Booking?",
+           text: "This cannot be undone!",
+           icon: "question",
+           showCancelButton: true,
+           confirmButtonColor: "#8FA584",
+           cancelButtonColor: "#d33",
+           confirmButtonText: "Approve"
+       });
 
         if (!confirm.isConfirmed) return;
 
-        const res = await fetch("http://localhost/backend/api/cancel_booking_admin.php", {
+        const res = await fetch("http://localhost/backend/api/crud.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ 
-                booking_id: bookingId, 
-                action: "delete" 
-            })
-        });
-
-        const result = await res.json();
-
-        if (result.message) {
-            Swal.fire("Success", result.message, "success");
-            fetchData(); 
-        } else {
-            Swal.fire("Error", result.error, "error");
-        }
-    };
-
-     const handleApprove = async (bookingId) => {
-        const confirm = await Swal.fire({
-            title: "Approve Booking?",
-            text: "This cannot be undone!",
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonColor: "#8FA584",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Approve"
-        });
-
-        if (!confirm.isConfirmed) return;
-
-        const res = await fetch("http://localhost/backend/api/cancel_booking_admin.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ 
-                booking_id: bookingId, 
+                id: bookingId, 
                 action: "approve" 
             })
         });
@@ -164,17 +130,6 @@ function BookRequest() {
                                                 </div>
                                             )}
 
-                                            {b.booking_status === "Cancelled" && (
-                                                <div className="flex items-center gap-1">
-                                                    <span
-                                                        onClick={() => handleDelete(b.booking_id)}
-                                                        className="material-symbols-outlined cursor-pointer text-red-600"
-                                                    >
-                                                        delete
-                                                    </span>
-                                                    <p className="text-sm">Delete</p>
-                                                </div>
-                                            )}
                                         </td>
                                     </tr>
                                 ))

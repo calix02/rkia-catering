@@ -6,7 +6,7 @@ const SignUp = React.forwardRef(({animate, onAnimationEnd, onClose, logIn},ref) 
     const [phone, setPhone] = useState("");
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState("user");
+    const [role, setRole] = useState("customer");
 
 
     const handleRegister = async (e) => {

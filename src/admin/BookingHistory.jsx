@@ -30,11 +30,11 @@ function BookingHistory(){
     
             if (!confirm.isConfirmed) return;
     
-            const res = await fetch("http://localhost/backend/api/cancel_booking_admin.php", {
+            const res = await fetch("http://localhost/backend/api/crud.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
-                    booking_id: bookingId, 
+                    id: bookingId, 
                     action: "delete" 
                 })
             });

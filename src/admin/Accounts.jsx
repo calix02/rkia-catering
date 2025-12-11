@@ -1,8 +1,63 @@
+import { useState, useEffect, useRef } from "react";
 import Sidebar from "./components/Sidebar";
+import useAnimatedToggle from "../hooks/useAnimatedToggle";
+import RoleCard from "./components/RoleCard";
+import Swal from "sweetalert2";
 function Accounts(){
+    const [data, setData] = useState([]);
+    const [selectedId , setSelectedId] = useState(null);
+    const fetchData = async () =>{
+           try{
+               const res = await fetch("http://localhost/backend/api/get_accounts.php");
+               const json = await res.json();
+               setData(json);
+           }catch(err){
+               console.log(err);
+           }
+       }
+       useEffect(() =>{
+           fetchData();
+       },[])
+    const handleDelete = async (userId) => {
+        const confirm = await Swal.fire({
+            title: "Delete Account?",
+            text: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#8FA584",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Delete Account"
+        });
+
+        if (!confirm.isConfirmed) return;
+        
+        const res = await fetch("http://localhost/backend/api/crud.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ 
+                id: userId, 
+                action: "delete-account" 
+            })
+        });
+        
+        const result = await res.json();
+        
+        if (result.message ) {
+            Swal.fire("Success", result.message, "success");
+            fetchData(); 
+        }
+    };
+    const updateRole = useAnimatedToggle();
+    const updateRef = useRef(null);
   
 return(
         <>
+        {updateRole.isVisible &&(
+            <div className="inset-0 z-40 fixed flex justify-center items-center pointer-events-auto bg-[#00000072]">
+                <RoleCard userId={selectedId} fetchData={fetchData} ref={updateRef} onAnimationEnd={updateRole.handleEnd} animate={updateRole.animation} onClose={()=> updateRole.setAnimation("fade-out")}/>
+            </div>
+
+        )}
         <Sidebar/>
         <div className="bg-[#F6F3ED] w-full min-h-screen py-5 ">
             <div className="w-full flex px-10 justify-end">
@@ -24,41 +79,24 @@ return(
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Joel Malupiton</td>
-                                <td>joelm01</td>
-                                <td>admin</td>   
-                                <td>
-                            <div className="flex justify-center gap-2">
-                                <button className="w-10 h-10 flex items-center justify-center rounded-full ">
-                                <i className="fa-solid fa-pen-to-square text-green-500 fa-lg"></i>
-                            </button>
-                            <button className="w-10 h-10 flex items-center justify-center rounded-full ">
-                                <i className="fa-solid fa-trash text-red-500 fa-lg"></i>
-                            </button>
-                            </div>
-
-                                </td>
-                                
-                                
-                             </tr>
-                             <tr>
-                                <td>Josh Cable</td>
-                                <td>josh09</td>
-                                <td>customer</td>   
-                                <td>
-                            <div className="flex justify-center gap-2">
-                                <button className="w-10 h-10 flex items-center justify-center rounded-full ">
-                                <i className="fa-solid fa-pen-to-square text-green-500 fa-lg"></i>
-                            </button>
-                            <button className="w-10 h-10 flex items-center justify-center rounded-full ">
-                                <i className="fa-solid fa-trash text-red-500 fa-lg"></i>
-                            </button>
-                            </div>
-
+                            {data.map((a, id) =>(
+                            <tr key={id}>
+                                <td>{a.full_name}</td>
+                                <td>{a.username}</td>
+                                <td>{a.role}</td>   
+                                <td className="py-4">
+                                    <div className="flex justify-center gap-2">
+                                        <button onClick={() =>{updateRole.toggle(); setSelectedId(a.user_id);}} className="w-10 h-10 flex items-center justify-center rounded-full">
+                                            <i className="fa-solid fa-pen-to-square text-green-500 fa-lg"></i>
+                                        </button>
+                                        <button onClick={ ()=>handleDelete(a.user_id)} className="w-10 h-10 flex items-center justify-center rounded-full ">
+                                            <i className="fa-solid fa-trash text-red-500 fa-lg"></i>
+                                        </button>
+                                    </div>
                                 </td>
                              </tr>
-
+                            ))}
+                           
                         </tbody>
                     </table>
                 </div>
