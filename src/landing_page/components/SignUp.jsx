@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from "react";
+import Swal from "sweetalert2";
 const SignUp = React.forwardRef(({animate, onAnimationEnd, onClose, logIn},ref) =>{
 
     const [name, setName] = useState("");
@@ -13,15 +14,27 @@ const SignUp = React.forwardRef(({animate, onAnimationEnd, onClose, logIn},ref) 
         e.preventDefault();
 
         if (!name || !phone || !username || !password) {
-            alert("Please fill in all required fields");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please fill in all required fields!",
+            });
             return; 
         }
         if (password.length < 8) {
-            alert("Password must be at least 8 characters");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Password must be at least 8 characters",
+            });
             return; 
         }
         if (!/^09\d{9}$/.test(phone)) {
-            alert("Phone number must start with 09 and be 11 digits long");
+             Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Phone number must start with 09 and be 11 digits long",
+            });
             return;
         }
 
@@ -42,7 +55,11 @@ const SignUp = React.forwardRef(({animate, onAnimationEnd, onClose, logIn},ref) 
        
             const data = await res.json();
             if (data.message) {
-                alert(data.message);
+                Swal.fire({
+                    icon: "success",
+                    title: "Registered Successfully",
+                    text: data.message,
+                });
                 setName("");
                 setPhone(""); 
                 setUserName("");
@@ -50,7 +67,11 @@ const SignUp = React.forwardRef(({animate, onAnimationEnd, onClose, logIn},ref) 
                 onClose();
                 logIn();
             } else {
-                alert(data.error); 
+                 Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: data.error,
+                });
             }
         }catch(err){
             console.error(err);

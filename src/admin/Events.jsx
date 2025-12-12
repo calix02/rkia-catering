@@ -69,7 +69,7 @@ function Events(){
       )}
 
       <Sidebar />
-      <div className="bg-[#f6f3ed] w-full min-h-screen py-5">
+      <div className="bg-white w-full min-h-screen py-5">
         <div className="w-full flex px-10 justify-end">
           <div className="min-w-40 px-2 h-10 flex text-sm justify-center items-center gap-2">
             <span className="material-symbols-outlined">account_circle</span>

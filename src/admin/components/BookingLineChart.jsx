@@ -18,17 +18,21 @@ const BookingLineChart = () => {
   const [chartData, setChartData] = useState([]);
 
   // Sample booking totals per month
-  const fetchMonthlyBookings = (year) => {
-    const sampleData = {
-      2025: [400, 250, 480, 200, 350, 500, 600, 700, 450, 300, 200, 100],
-      2024: [120, 80, 300, 200, 250, 400, 500, 600, 450, 350, 200, 150],
-    };
-    return sampleData[year] || Array(12).fill(0);
-  };
+ const fetchMonthlyBookings = async (year) => {
+  const res = await fetch(`http://localhost/backend/api/get_monthly_bookings.php?year=${year}`, {
+    credentials: "include",
+  });
 
-  useEffect(() => {
-    setChartData(fetchMonthlyBookings(selectedYear));
-  }, [selectedYear]);
+  const data = await res.json();
+  return data.monthly_totals;
+};
+
+useEffect(() => {
+  fetchMonthlyBookings(selectedYear).then((months) => {
+    setChartData(months);
+  });
+}, [selectedYear]);
+
 
   const data = {
     labels: [
@@ -39,8 +43,8 @@ const BookingLineChart = () => {
       {
         label: `Total Bookings in ${selectedYear}`,
         data: chartData,
-        borderColor: '#8FA584',
-        backgroundColor: 'rgba(128,181,239,0.2)',
+        borderColor: '#000000ff',
+        backgroundColor: '#337e0ea1',
         tension: 0.4,
         fill: true,
       },
@@ -67,10 +71,10 @@ const BookingLineChart = () => {
   const totalBookings = chartData.reduce((a, b) => a + b, 0);
 
   return (
-    <div className="w-full py-8  roboto border p-5 rounded-2xl shadow-sm transition-all">
+    <div className="w-full py-8  roboto border p-5 rounded-2xl shadow-[2px_2px_2px_gray] transition-all">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         <h1 className="text-2xl poppins-semibold">
-          Bookings for Year {selectedYear}
+          Completed Bookings for Year {selectedYear}
         </h1>
 
         <div className="flex flex-wrap items-center gap-2">

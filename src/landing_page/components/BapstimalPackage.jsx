@@ -33,7 +33,7 @@ const BaptismalPackage = React.forwardRef(({animate, onAnimationEnd, onClose},re
                     <div className="bg-[#8FA584] w-full h-10 poppins-semibold cursor-pointer shadow-[2px_2px_2px_black] text-md rounded-2xl">Book Now </div>
 
                 </div>
-                <div className="w-full min-h-60 py-3 poppins-regular text-sm lg:p-5">
+                <div className="w-full min-h-60 py-3 poppins-regular text-sm lg:p-5"> 
                      {type === "Basic" && (
                     <>
                     <h2 className="text-lg poppins-semibold">Basic Inclusions</h2>

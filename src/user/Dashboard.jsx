@@ -62,7 +62,7 @@ function Dashboard(){
                 
                 <div className="flex justify-between w-full px-3">
                   <div className="w-full ">
-                    <button onClick = {() =>{showWedding.toggle(); setSelectedId(e.event_id)}} className=" w-full flex-end font-bold gap-5 h-10 border bg-[#A9B79A] rounded-2xl ">Show</button>
+                    <button onClick = {() =>{showWedding.toggle(); setSelectedId(e.event_id)}} className=" w-full cursor-pointer hover:scale-105 transition duration-300 flex-end font-bold gap-5 h-10 border bg-[#A9B79A] rounded-2xl ">Show</button>
                   </div>
                   
                 </div>

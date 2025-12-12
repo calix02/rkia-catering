@@ -5,9 +5,11 @@ import { Navigate } from "react-router-dom";
 export default function CustomerRoute({ children }) {
   const { user, checkingSession } = useContext(AuthContext);
 
-  if (checkingSession) return <div>Loading...</div>;
+  if (checkingSession) return null;
 
-  if (!user || user.role !== "customer") return <Navigate to="/403" />;
+  if (!user || user.role !== "customer") {
+    return <Navigate to="/" />;
+  }
 
   return children;
 }

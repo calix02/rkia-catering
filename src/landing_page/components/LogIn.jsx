@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingScreen from "../../LoadingScreen";
+import Swal from "sweetalert2";
 
 const LogIn = React.forwardRef(({ animate, onAnimationEnd, onClose, signUp }, ref) => {
 
@@ -18,15 +19,19 @@ const LogIn = React.forwardRef(({ animate, onAnimationEnd, onClose, signUp }, re
         const ok = await login(username, password);
 
         if (ok) {
-            setLoading(true); // <-- SHOW LOADER
+            setLoading(true); 
 
-            setTimeout(() => { // <-- 3 SECOND DELAY
+            setTimeout(() => { 
                 if (ok.user.role === "admin") navigate("/admin/dashboard");
                 else navigate("/customer/dashboard");
             }, 3000);
 
         } else {
-            alert("Invalid login");
+             Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Invalid Log In",
+            });
         }
     };
 

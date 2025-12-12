@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "../../assets/logo.png";
 import "../../animate.css";
-function Header({home,services,about}){
+function Header({home,services,about,login}){
     const [showNavigation, setShowNavigation] = useState(false);
     const [animate, setAnimate] = useState("fade-up")
     
@@ -29,7 +29,7 @@ function Header({home,services,about}){
                     <a href={home}>Home</a>
                     <a href={services}>Services</a>
                     <a href={about}>About</a>
-                    <button className="flex items-center gap-1"><i className="fa-solid fa-user"></i>Log In</button>
+                    <button onClick={login} className="flex cursor-pointer items-center gap-1"><i className="fa-solid fa-user"></i>Log In</button>
                 </nav>   
                 <button onClick={clickedMenu} className="lg:hidden block cursor-pointer">{showNavigation? (<i className="fa-solid fa-xmark"></i>) : (<i className="fa-solid fa-bars"></i>)}</button>
             </div>
@@ -40,7 +40,7 @@ function Header({home,services,about}){
                 <a href="">Home</a>
                 <a href="">Services</a>
                 <a href="">About</a>
-                <button className="flex items-center gap-1"><i className="fa-solid fa-user"></i>Log In</button>
+                <button onClick={login} className="flex items-center cursor-pointer gap-1"><i className="fa-solid fa-user"></i>Log In</button>
             </nav>   
         </div>
        

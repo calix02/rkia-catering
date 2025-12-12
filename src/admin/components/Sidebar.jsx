@@ -10,28 +10,40 @@ function Sidebar() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const handleLogout = async () => {
-    const ok = await logout();
-
-    if (ok) {
-      // Show SweetAlert
-      Swal.fire({
-        icon: "success",
-        title: "Logged out",
-        text: "You have successfully logged out!",
-        timer: 1500,
-        showConfirmButton: false,
-        willClose: () => {
-          // After SweetAlert closes, show loader for 2 seconds
-          setLoading(true);
-          setTimeout(() => {
-            setLoading(false);
-            navigate("/"); // redirect to landing page
-          }, 2000);
-        },
+  const handleLogout = () => {
+     Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to log out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#8FA584",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log out",
+      cancelButtonText: "Cancel",
+     }).then(async (result) => {
+  
+        if (result.isConfirmed) {
+          const ok = await logout();
+  
+          if (ok) {
+            Swal.fire({
+              icon: "success",
+              title: "Logged out",
+              text: "You have successfully logged out!",
+              timer: 1500,
+              showConfirmButton: false,
+              willClose: () => {
+                setLoading(true);
+                setTimeout(() => {
+                  setLoading(false);
+                  navigate("/");
+                }, 2000);
+              },
+            });
+          }
+        }
       });
-    }
-  };
+    };
 
   return (
     <>

@@ -104,7 +104,7 @@ function LandingPage(){
 
 
         )}
-        <Header home="#home" services="#services" about="#about"/>
+        <Header login={showLogIn.toggle} home="#home" services="#services" about="#about"/>
         <section id="home" className="w-full bg-[url(/src/assets/background.svg)] bg-cover flex flex-col  h-screen">
 
             <div className="w-full h-screen flex flex-col lg:justify-center lg:py-0 py-20 lg:mt-0 mt-30  z-10 lg:px-15 px-5 ">
@@ -112,7 +112,9 @@ function LandingPage(){
                 <h1 className="poppins-semibold text-center lg:text-start lg:text-6xl text-4xl lg:w-180 lg:mt-5  lg:leading-15 leading-13"><span className="text-[#6E856A]">Crafting</span> magical moments</h1>
                 <Typewriter message="From intimate gatherings to grand celebrations, we design decorations that truly impress. Let’s talk about your event today!"/>
                 <div className="flex lg:justify-start justify-center px-5 gap-5 lg:mt-5 mt-10">
-                    <button className="w-35 h-10 poppins-semibold bg-[#8FA584] cursor-pointer shadow-[2px_2px_1px_black] rounded-2xl  hover:scale-107 transition duration-300">Get Started</button>
+                  
+                    <a href="#services" className="w-35 h-10 poppins-semibold bg-[#8FA584] justify-center flex items-center cursor-pointer shadow-[2px_2px_1px_black] rounded-2xl  hover:scale-107 transition duration-300">Get Started</a>
+                  
                     <button onClick={showLogIn.toggle} className="w-35 h-10 bg-white text-[#51754a] poppins-semibold cursor-pointer rounded-2xl shadow-[2px_2px_2px_black] hover:scale-107 transition duration-300">Book Now</button>
                 </div>
             </div>

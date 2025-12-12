@@ -35,6 +35,7 @@ function BookingStatus() {
             <div className="lg:ml-60 flex justify-between  items-center pt-10 px-10">
                 <h1 className="poppins-semibold text-2xl">Book Status</h1>
             </div>
+            
             <div className="ml-60  px-8">
                 <div className="mt-10 border border-[#e0e0e0] overflow-hidden rounded-2xl shadow-[2px_2px_2px_gray]">
                     <table className=" poppins-regular w-full  text-center">
@@ -61,8 +62,8 @@ function BookingStatus() {
 
                             ))
                             ):(
-                            <tr colSpan="6" className="text-xl poppins-semibold text-gray-400 py-10">
-                                <td>No Approved Bookings</td>
+                            <tr  className="text-xl poppins-semibold text-gray-400 py-10">
+                                <td colSpan="6" className="py-10">No Bookings Yet</td>
                             </tr>
                             )}
                            
